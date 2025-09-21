@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+   <head>
+      <meta charset="utf-8">
+      <title>Lost coin series v2</title>
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/crypto_sets.css') }}">
+      <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+      <script>
+         if (typeof NodeList !== "undefined" && !NodeList.prototype.forEach) {
+             NodeList.prototype.forEach = Array.prototype.forEach;
+         }
+         document.querySelectorAll("p").forEach(p => {
+             p.classList.add("found");
+         });
+      </script>
+   </head>
+   <body>
+      <a href="https://www.crypto.raritycheck.com">Home</a>
+      <h1>Lost coin series (with hole) v2 | Source: {{source1}}</h1>
+      <div class="row">
+         <div class="column">
+            <table class="styled-table">
+               <thead>
+                  <tr>
+                     <th>Serial Number</th>
+                     <th>BTC Address (Gilded Silver coins)</th>
+                     <th>Balance</th>
+                     <th>Status</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  {% for ind in range(0, (silver_addresses|length)) %} 
+                  <tr style="border: 3px solid gold" {% if loop.index % 2 == 0 %} class="active-row" {% endif %}>
+                     <td><span>Gilded Silver {{ silver_serial_nums[ind] }}</span></td>
+                     <td><a href="{{ com_blockchain_base_address + silver_addresses[ind] }}" target="_blank">{{ silver_addresses[ind] }}</a></td>
+                     <td><span>{{ silver_balances[silver_addresses[ind]]['final_balance'] }} BTC</span></td>
+                     <td><span style="color: {{ silver_balances[silver_addresses[ind]]['status']['color'] }};">{{ silver_balances[silver_addresses[ind]]['status']['label'] }}</span></td>
+                  </tr>
+                  {% endfor %}
+               </tbody>
+            </table>
+         </div>
+         <div class="column">
+            <table class="styled-table">
+               <thead>
+                  <tr>
+                     <th>Serial Number</th>
+                     <th>BTC Address (Zinc alloy coins)</th>
+                     <th>Balance</th>
+                     <th>Status</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  {% for ind in range(0, (zinc_addresses|length)) %} 
+                  <tr style="border: 3px solid grey" {% if loop.index % 2 == 0 %} class="active-row" {% endif %}>
+                     <td><span>Alloy {{ zinc_serial_nums[ind] }}</span></td>
+                     <td><a href="{{ com_blockchain_base_address + zinc_addresses[ind] }}" target="_blank">{{ zinc_addresses[ind] }}</a></td>
+                     <td><span>{{ zinc_balances[zinc_addresses[ind]]['final_balance'] }} BTC</span></td>
+                     <td><span style="color: {{ zinc_balances[zinc_addresses[ind]]['status']['color'] }};">{{ zinc_balances[zinc_addresses[ind]]['status']['label']}}</span></td>
+                  </tr>
+                  {% endfor %}
+               </tbody>
+            </table>
+         </div>
+      </div>
+      <div class="row">
+         <div class="column">
+            <table class="styled-table">
+               <thead>
+                  <tr>
+                     <th>Serial Number</th>
+                     <th>BTC Address (5 Oz Gilded Silver coins)</th>
+                     <th>Balance</th>
+                     <th>Status</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  {% for ind in range(0, (five_oz_addresses|length)) %} 
+                  <tr style="border: 3px solid silver" {% if loop.index % 2 == 0 %} class="active-row" {% endif %}>
+                     <td><span>5 Oz Gilded Silver {{ five_oz_serial_nums[ind] }}</span></td>
+                     <td><a href="{{ com_blockchain_base_address + five_oz_addresses[ind] }}" target="_blank">{{ five_oz_addresses[ind] }}</a></td>
+                     <td><span>{{ five_oz_balances[five_oz_addresses[ind]]['final_balance'] }} BTC</span></td>
+                     <td><span style="color: {{ five_oz_balances[five_oz_addresses[ind]]['status']['color'] }};">{{ five_oz_balances[five_oz_addresses[ind]]['status']['label'] }}</span></td>
+                  </tr>
+                  {% endfor %}
+               </tbody>
+            </table>
+         </div>
+         <div class="column">
+            <table class="styled-table">
+               <thead>
+                  <tr>
+                     <th>Serial Number</th>
+                     <th>BTC Address (Error Silver coins)</th>
+                     <th>Balance</th>
+                     <th>Status</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  {% for ind in range(0, (error_addresses|length)) %} 
+                  <tr style="border: 3px solid red" {% if loop.index % 2 == 0 %} class="active-row" {% endif %}>
+                     <td><span>Error Silver {{ error_serial_nums[ind] }}</span></td>
+                     <td><a href="{{ com_blockchain_base_address + error_addresses[ind] }}" target="_blank">{{ error_addresses[ind] }}</a></td>
+                     <td><span>{{ error_balances[error_addresses[ind]]['final_balance'] }} BTC</span></td>
+                     <td><span style="color: {{ error_balances[error_addresses[ind]]['status']['color'] }};">{{ error_balances[error_addresses[ind]]['status']['label']}}</span></td>
+                  </tr>
+                  {% endfor %}
+               </tbody>
+            </table>
+         </div>
+      </div>
+   </body>
+</html>

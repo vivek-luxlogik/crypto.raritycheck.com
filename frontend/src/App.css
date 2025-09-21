@@ -1,0 +1,264 @@
+/* CSS Variables for theming */
+:root {
+  /* Light theme (default) */
+  --bg-primary: #f8fafc;
+  --bg-secondary: #ffffff;
+  --bg-hover: #f0f9ff;
+  --text-primary: #1a202c;
+  --text-secondary: #4a5568;
+  --border-color: #e2e8f0;
+  --shadow: rgba(0, 0, 0, 0.1);
+  --accent-color: #f7931a;
+  --accent-hover: #e8821a;
+  
+  /* Theme switcher colors */
+  --theme-switcher-bg: #ffffff;
+  --theme-switcher-border: #e2e8f0;
+  --theme-switcher-color: #4a5568;
+  --theme-switcher-hover-bg: #f7fafc;
+  --theme-switcher-hover-border: #cbd5e0;
+}
+
+[data-theme="dark"] {
+  /* Dark theme */
+  --bg-primary: #1a202c;
+  --bg-secondary: #2d3748;
+  --bg-hover: #4a5568;
+  --text-primary: #f7fafc;
+  --text-secondary: #e2e8f0;
+  --border-color: #4a5568;
+  --shadow: rgba(0, 0, 0, 0.3);
+  --accent-color: #f7931a;
+  --accent-hover: #e8821a;
+  
+  /* Theme switcher colors */
+  --theme-switcher-bg: #2d3748;
+  --theme-switcher-border: #4a5568;
+  --theme-switcher-color: #e2e8f0;
+  --theme-switcher-hover-bg: #4a5568;
+  --theme-switcher-hover-border: #718096;
+}
+
+/* Reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.0;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header styles */
+.header {
+  background: linear-gradient(135deg, #f7931a 0%, #ff6b35 100%);
+  color: white;
+  padding: 1rem 0;
+  box-shadow: 0 2px 10px var(--shadow);
+  transition: box-shadow 0.3s ease;
+}
+
+.header-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.logo-link {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  text-decoration: none;
+  color: inherit;
+}
+
+.header-logo {
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  background: white;
+  padding: 4px;
+}
+
+.header-title h1 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.header-title p {
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+/* Main content */
+.main {
+  flex: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  width: 100%;
+}
+
+/* Footer */
+.footer {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  text-align: center;
+  padding: 1rem;
+  margin-top: auto;
+  border-top: 1px solid var(--border-color);
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.footer p {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+/* Loading spinner */
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #f7931a;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 1rem;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Button styles */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: #f7931a;
+  color: white;
+}
+
+.btn:hover {
+  background: #e8831a;
+  transform: translateY(-1px);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.retry-btn {
+  background: #e53e3e;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.retry-btn:hover {
+  background: #c53030;
+}
+
+/* Error styles */
+.error {
+  text-align: center;
+  padding: 3rem 2rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-left: 4px solid #e53e3e;
+}
+
+.error h2 {
+  color: #e53e3e;
+  margin-bottom: 1rem;
+}
+
+.error p {
+  color: #718096;
+  margin-bottom: 2rem;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .header-content {
+    padding: 0 1rem;
+  }
+  
+  .header-title h1 {
+    font-size: 1.5rem;
+  }
+  
+  .main {
+    padding: 1rem;
+  }
+  
+  .header-logo {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+/* Address redirect styles */
+.redirecting {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;
+  text-align: center;
+  padding: 2rem;
+}
+
+.redirecting .loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #f7931a;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+.redirecting p {
+  color: #666;
+  font-size: 1.1rem;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

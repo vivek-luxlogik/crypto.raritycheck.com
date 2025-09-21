@@ -1,0 +1,222 @@
+{
+  "coinSets": [
+    {
+      "id": "2021-set-1",
+      "name": "Vigilante 2021 Set",
+      "description": "First collection of Bitcoin physical coins",
+      "totalCoins": 75,
+      "frontImage": "https://rcpublicbucket.s3.us-east-1.amazonaws.com/rc-coins/vigilante-2021/vigilante-2021-front.png",
+      "backImage": "https://rcpublicbucket.s3.us-east-1.amazonaws.com/rc-coins/vigilante-2021/vigilante-2021-back.png",
+      "coinTypes": [
+        {
+          "type": "gilded-silver",
+          "name": "Gilded Silver Coins",
+          "material": "Gilded Silver",
+          "borderColor": "#FFD700",
+          "imagePath": "/btc_logos/256.png",
+          "dataFile": "2021_set_1_gilded_silver_addresses.txt",
+          "maxCoins": 25,
+          "frontImage": "https://rcpublicbucket.s3.us-east-1.amazonaws.com/rc-coins/vigilante-2021/vigilante-2021-gilded-silver-front.png",
+          "backImage": "https://rcpublicbucket.s3.us-east-1.amazonaws.com/rc-coins/vigilante-2021/vigilante-2021-gilded-silver-back.png"
+        },
+        {
+          "type": "silver",
+          "name": "Silver Coins",
+          "material": "Silver",
+          "borderColor": "#C0C0C0",
+          "imagePath": "/btc_logos/256.png",
+          "dataFile": "2021_set_1_silver_addresses.txt",
+          "maxCoins": 50,
+          "frontImage": "https://rcpublicbucket.s3.us-east-1.amazonaws.com/rc-coins/vigilante-2021/vigilante-2021-silver-front.png",
+          "backImage": "https://rcpublicbucket.s3.us-east-1.amazonaws.com/rc-coins/vigilante-2021/vigilante-2021-silver-back.png"
+        }
+      ]
+    },
+    {
+      "id": "lcs-v1",
+      "name": "Lost Coin Series v1",
+      "description": "Lost coin series with hole design",
+      "totalCoins": 300,
+      "dataFile": "lcs_v1_addresses.txt",
+      "frontImage": "https://rcpublicbucket.s3.us-east-1.amazonaws.com/rc-coins/lcs-v1/lcs-v1-front.png",
+      "backImage": "https://rcpublicbucket.s3.us-east-1.amazonaws.com/rc-coins/lcs-v1/lcs-v1-back.png",
+      "coinTypes": [
+        {
+          "type": "silver",
+          "name": "Silver Coins",
+          "material": "Silver",
+          "borderColor": "#C0C0C0",
+          "imagePath": "/btc_logos/256.png",
+          "dataFile": "lcs_v1_silver_addresses.txt",
+          "maxCoins": 100,
+          "frontImage": "https://rcpublicbucket.s3.us-east-1.amazonaws.com/rc-coins/lcs-v1/lcs-v1-silver-front.png",
+          "backImage": "https://rcpublicbucket.s3.us-east-1.amazonaws.com/rc-coins/lcs-v1/lcs-v1-silver-back.png"
+        },
+        {
+          "type": "zinc",
+          "name": "Zinc Alloy Coins",
+          "material": "Zinc Alloy",
+          "borderColor": "#808080",
+          "imagePath": "/btc_logos/256.png",
+          "dataFile": "lcs_v1_zinc_addresses.txt",
+          "maxCoins": 200,
+          "frontImage": "https://rcpublicbucket.s3.us-east-1.amazonaws.com/rc-coins/lcs-v1/lcs-v1-zinc-front.png",
+          "backImage": "https://rcpublicbucket.s3.us-east-1.amazonaws.com/rc-coins/lcs-v1/lcs-v1-zinc-back.png"
+        }
+      ]
+    },
+    {
+      "id": "lcs-v2",
+      "name": "Lost Coin Series v2",
+      "description": "Advanced lost coin series with multiple variants",
+      "totalCoins": 330,
+      "dataFile": "lcs_v2_addresses.txt",
+      "frontImage": "https://rcpublicbucket.s3.us-east-1.amazonaws.com/rc-coins/lcs-v2/lcs-v2-front.png",
+      "backImage": "https://rcpublicbucket.s3.us-east-1.amazonaws.com/rc-coins/lcs-v2/lcs-v2-back.png",
+      "coinTypes": [
+        {
+          "type": "silver",
+          "name": "Gilded Silver Coins",
+          "material": "Gilded Silver",
+          "borderColor": "#C0C0C0",
+          "imagePath": "/btc_logos/256.png",
+          "dataFile": "lcs_v2_gilded_silver_addresses.txt",
+          "maxCoins": 100,
+          "frontImage": "https://rcpublicbucket.s3.us-east-1.amazonaws.com/rc-coins/lcs-v2/lcs-v2-silver-front.png",
+          "backImage": "https://rcpublicbucket.s3.us-east-1.amazonaws.com/rc-coins/lcs-v2/lcs-v2-silver-back.png"
+        },
+        {
+          "type": "zinc",
+          "name": "Zinc Alloy Coins",
+          "material": "Zinc Alloy",
+          "borderColor": "#808080",
+          "imagePath": "/btc_logos/256.png",
+          "dataFile": "lcs_v2_zinc_addresses.txt",
+          "maxCoins": 200,
+          "frontImage": "https://rcpublicbucket.s3.us-east-1.amazonaws.com/rc-coins/lcs-v2/lcs-v2-zinc-front.png",
+          "backImage": "https://rcpublicbucket.s3.us-east-1.amazonaws.com/rc-coins/lcs-v2/lcs-v2-zinc-back.png"
+        },
+        {
+          "type": "five-oz",
+          "name": "5 Oz Gilded Silver",
+          "material": "5 Oz Gilded Silver",
+          "borderColor": "#FFD700",
+          "imagePath": "/btc_logos/512.png",
+          "dataFile": "lcs_v2_5_Oz_gilded_silver_addresses.txt",
+          "maxCoins": 25,
+          "frontImage": "https://rcpublicbucket.s3.us-east-1.amazonaws.com/rc-coins/lcs-v2/lcs-v2-five-oz-front.png",
+          "backImage": "https://rcpublicbucket.s3.us-east-1.amazonaws.com/rc-coins/lcs-v2/lcs-v2-five-oz-back.png"
+        },
+        {
+          "type": "error",
+          "name": "Error Silver Coins",
+          "material": "Error Silver",
+          "borderColor": "#FF6B6B",
+          "imagePath": "/btc_logos/256.png",
+          "dataFile": "lcs_v2_error_silver_addresses.txt",
+          "maxCoins": 5,
+          "frontImage": "https://rcpublicbucket.s3.us-east-1.amazonaws.com/rc-coins/lcs-v2/lcs-v2-error-front.png",
+          "backImage": "https://rcpublicbucket.s3.us-east-1.amazonaws.com/rc-coins/lcs-v2/lcs-v2-error-back.png"
+        }
+      ]
+    },
+    {
+      "id": "vibgyor-orange",
+      "name": "VIBGYOR Orange",
+      "description": "VIBGYOR color series - Orange variant",
+      "totalCoins": 200,
+      "dataFile": "vibgyor_orange_addresses.txt",
+      "frontImage": "https://rcpublicbucket.s3.us-east-1.amazonaws.com/rc-coins/vibgyor-orange/vibgyor-orange-front.png",
+      "backImage": "https://rcpublicbucket.s3.us-east-1.amazonaws.com/rc-coins/vibgyor-orange/vibgyor-orange-back.png",
+      "coinTypes": [
+        {
+          "type": "gilded",
+          "name": "Gilded Coins",
+          "material": "Gilded",
+          "borderColor": "#FFD700",
+          "imagePath": "/btc_logos/256.png",
+          "dataFile": "vigyor_orange_gilded_addresses.txt",
+          "maxCoins": 100,
+          "frontImage": "https://rcpublicbucket.s3.us-east-1.amazonaws.com/rc-coins/vibgyor-orange/vibgyor-orange-gilded-front.png",
+          "backImage": "https://rcpublicbucket.s3.us-east-1.amazonaws.com/rc-coins/vibgyor-orange/vibgyor-orange-gilded-back.png"
+        },
+        {
+          "type": "silver",
+          "name": "Silver Coins",
+          "material": "Silver",
+          "borderColor": "#C0C0C0",
+          "imagePath": "/btc_logos/256.png",
+          "dataFile": "vigyor_orange_silver_addresses.txt",
+          "maxCoins": 100,
+          "frontImage": "https://rcpublicbucket.s3.us-east-1.amazonaws.com/rc-coins/vibgyor-orange/vibgyor-orange-silver-front.png",
+          "backImage": "https://rcpublicbucket.s3.us-east-1.amazonaws.com/rc-coins/vibgyor-orange/vibgyor-orange-silver-back.png"
+        }
+      ]
+    },
+    {
+      "id": "vibgyor-orange-compromised",
+      "name": "VIBGYOR Orange (Compromised)",
+      "description": "VIBGYOR Orange series - Compromised variant",
+      "totalCoins": 200,
+      "dataFile": "compromised_vibgyor_orange_addresses.txt",
+      "frontImage": "https://rcpublicbucket.s3.us-east-1.amazonaws.com/rc-coins/vibgyor-orange-compromised/vibgyor-orange-compromised-front.png",
+      "backImage": "https://rcpublicbucket.s3.us-east-1.amazonaws.com/rc-coins/vibgyor-orange-compromised/vibgyor-orange-compromised-back.png",
+      "coinTypes": [
+        {
+          "type": "gilded",
+          "name": "Compromised Gilded Coins",
+          "material": "Compromised Gilded",
+          "borderColor": "#FFD700",
+          "imagePath": "/btc_logos/256.png",
+          "dataFile": "compromised_vigyor_orange_gilded_addresses.txt",
+          "maxCoins": 100,
+          "frontImage": "https://rcpublicbucket.s3.us-east-1.amazonaws.com/rc-coins/vibgyor-orange-compromised/vibgyor-orange-compromised-gilded-front.png",
+          "backImage": "https://rcpublicbucket.s3.us-east-1.amazonaws.com/rc-coins/vibgyor-orange-compromised/vibgyor-orange-compromised-gilded-back.png"
+        },
+        {
+          "type": "silver",
+          "name": "Compromised Silver Coins",
+          "material": "Compromised Silver",
+          "borderColor": "#C0C0C0",
+          "imagePath": "/btc_logos/256.png",
+          "dataFile": "compromised_vigyor_orange_silver_addresses.txt",
+          "maxCoins": 100,
+          "frontImage": "https://rcpublicbucket.s3.us-east-1.amazonaws.com/rc-coins/vibgyor-orange-compromised/vibgyor-orange-compromised-silver-front.png",
+          "backImage": "https://rcpublicbucket.s3.us-east-1.amazonaws.com/rc-coins/vibgyor-orange-compromised/vibgyor-orange-compromised-silver-back.png"
+        }
+      ]
+    }
+  ],
+  "blockchainApis": {
+    "primary": "https://blockchain.info/balance?active=",
+    "fallback": "https://mempool.space/api/address/",
+    "explorer": "https://www.blockchain.com/explorer/addresses/btc/"
+  },
+  "statusTypes": {
+    "neverLoaded": {
+      "label": "Never Loaded",
+      "color": "#000000",
+      "description": "Address has never received any Bitcoin"
+    },
+    "neverRedeemed": {
+      "label": "Never Redeemed",
+      "color": "#008000",
+      "description": "Bitcoin received but never spent"
+    },
+    "partiallyRedeemed": {
+      "label": "Partially Redeemed",
+      "color": "#FFA500",
+      "description": "Some Bitcoin has been spent"
+    },
+    "fullyRedeemed": {
+      "label": "Fully Redeemed",
+      "color": "#FF0000",
+      "description": "All Bitcoin has been spent"
+    },
+    "error": {
+      "label": "Error",
+      "color": "#FF0000",
+      "description": "Unable to fetch balance information"
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "pixels": [
+    {"startX": 0, "startY": 0, "endX": 299, "endY": 99, "color": "#5E4EDB", "url": "https://koinly.io/?via=B99AF085&utm_source=affiliate", "owner": "Koinly", "price": 30000000, "imagePath": "/clients/koinly.png"},
+    {"startX": 275, "startY": 100, "endX": 724, "endY": 199, "color": "#0075EB", "url": "https://business.revolut.com/signup?promo=b2b-ref-030-H2-TXC&ext=ee15fceb-dc1f-448e-940f-061bbc56a2e9&context=B2B_REFERRAL", "owner": "Revolut", "price": 45000000, "imagePath": "/clients/revolut.png"},
+    {"startX": 0, "startY": 300, "endX": 449, "endY": 449, "color": "#1A1A1A", "url": "https://www.coolwallet.io/products/coolwallet-pro/?ref=zdg2ntq", "owner": "CoolWallet", "price": 67500000, "imagePath": "/clients/coolwallet.png"},
+    {"startX": 700, "startY": 0, "endX": 999, "endY": 99, "color": "#5E4EDB", "url": "https://shop.ledger.com/?r=ef6a977a1697", "owner": "Ledger", "price": 30000000, "imagePath": "/clients/ledger.png"}
+  ],
+  "totalPixels": 1000000
+}

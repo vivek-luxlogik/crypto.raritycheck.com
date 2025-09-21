@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+   <head>
+      <meta charset="utf-8">
+      <title>Vigilante 2021 Set</title>
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/crypto_sets.css') }}">
+      <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+      <script>
+          if (typeof NodeList !== "undefined" && !NodeList.prototype.forEach) {
+              NodeList.prototype.forEach = Array.prototype.forEach;
+          }
+          document.querySelectorAll("p").forEach(p => {
+              p.classList.add("found");
+          });
+      </script>
+   </head>
+   <body>
+        <a href="https://www.crypto.raritycheck.com">Home</a>
+        <h1>Vigilante 2021 Set | Source: {{source1}}, {{source2}}</h1>
+        
+        <h2>Gilded Silver Coins (25 coins)</h2>
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    <th>Serial Number</th>
+                    <th>BTC Address</th>
+                    <th>Balance</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in range(gilded_addresses|length) %}
+                <tr>
+                    <td>{{gilded_serial_nums[i]}}</td>
+                    <td><a href="{{com_blockchain_base_address}}{{gilded_addresses[i]}}" target="_blank">{{gilded_addresses[i]}}</a></td>
+                    <td>{{gilded_balances[gilded_addresses[i]]['final_balance']}}</td>
+                    <td style="color: {{gilded_balances[gilded_addresses[i]]['color']}}">{{gilded_balances[gilded_addresses[i]]['status']}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        
+        <h2>Silver Coins (75 coins)</h2>
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    <th>Serial Number</th>
+                    <th>BTC Address</th>
+                    <th>Balance</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in range(silver_addresses|length) %}
+                <tr>
+                    <td>{{silver_serial_nums[i]}}</td>
+                    <td><a href="{{com_blockchain_base_address}}{{silver_addresses[i]}}" target="_blank">{{silver_addresses[i]}}</a></td>
+                    <td>{{silver_balances[silver_addresses[i]]['final_balance']}}</td>
+                    <td style="color: {{silver_balances[silver_addresses[i]]['color']}}">{{silver_balances[silver_addresses[i]]['status']}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+   </body>
+</html>
