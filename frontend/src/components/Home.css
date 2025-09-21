@@ -116,6 +116,33 @@
   color: var(--text-secondary);
 }
 
+.collection-buy-section {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.collection-buy-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--accent-color);
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.8rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px var(--shadow);
+}
+
+.collection-buy-button:hover {
+  background: var(--accent-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 3px 6px var(--shadow);
+}
+
 .info-section {
   background: var(--bg-secondary);
   border-radius: 12px;

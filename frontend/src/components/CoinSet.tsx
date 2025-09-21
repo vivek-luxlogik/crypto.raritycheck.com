@@ -22,6 +22,8 @@ interface CoinSet {
   description: string;
   totalCoins: number;
   dataFile: string;
+  buyUrl?: string;
+  otherUrl?: string;
   coinTypes: CoinType[];
 }
 
@@ -200,6 +202,10 @@ const CoinSet: React.FC<CoinSetProps> = ({ coinSet }) => {
     }));
   };
 
+  const openBlockchainExplorer = (address: string) => {
+    window.open(`https://blockstream.info/address/${address}`, '_blank');
+  };
+
   if (loading) {
     return (
       <div className="coin-set">
@@ -241,7 +247,28 @@ const CoinSet: React.FC<CoinSetProps> = ({ coinSet }) => {
                 <strong>{coinSet.coinTypes.length}</strong> coin types
               </span>
             </div>
+            {coinSet.buyUrl && coinSet.buyUrl.trim() !== '' && (
+              <div className="buy-section">
+                <a 
+                  href={coinSet.buyUrl} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="buy-button"
+                >
+                  🛒 Buy Now
+                </a>
+              </div>
+            )}
           </div>
+          {coinSet.coinTypes.length > 0 && coinSet.coinTypes[0]?.frontImage && (
+            <div className="coin-set-header-image">
+              <img 
+                src={coinSet.coinTypes[0]?.frontImage} 
+                alt={`${coinSet.name} front`}
+                className="coin-set-front-image"
+              />
+            </div>
+          )}
         </div>
       </div>
 
@@ -441,6 +468,19 @@ const CoinSet: React.FC<CoinSetProps> = ({ coinSet }) => {
           ))}
         </div>
       </div>
+
+      {coinSet.otherUrl && coinSet.otherUrl.trim() !== '' && (
+        <div className="buy-section">
+          <a 
+            href={coinSet.otherUrl} 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="buy-button"
+          >
+            Other
+          </a>
+        </div>
+      )}
 
       {/* Hover Zoom Popup */}
       {hoveredImage && (

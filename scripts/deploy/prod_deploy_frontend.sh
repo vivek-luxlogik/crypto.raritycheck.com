@@ -24,7 +24,7 @@ if [ "$user_input" -eq "$num" ]; then
     npm run build
 
     BUILD_DIR="dist/"
-    BUCKET="s3://crypto-raritycheck-prod-frontend"
+    BUCKET="s3://crypto-raritycheck-frontend-prod"
     CLOUDFRONT_DIST_ID="E3175NJAPIRG5J"
 
     source "$__dir/upload_to_s3.sh"

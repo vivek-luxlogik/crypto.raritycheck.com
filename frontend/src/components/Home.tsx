@@ -16,7 +16,7 @@ const Home: React.FC = () => {
       <div className="collections-grid">
         <h2>Available Collections</h2>
         <div className="collections-list">
-          {coinData.coinSets.map((set) => (
+          {coinData.coinSets.filter(set => set.id !== 'vibgyor-orange-compromised').map((set) => (
             <Link key={set.id} to={`/${set.id}`} className="collection-card">
               <div className="collection-header">
                 <img 
@@ -44,6 +44,19 @@ const Home: React.FC = () => {
                   </div>
                 ))}
               </div>
+              {set.buyUrl && set.buyUrl.trim() !== '' && (
+                <div className="collection-buy-section">
+                  <a 
+                    href={set.buyUrl} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="collection-buy-button"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    🛒 Buy Now
+                  </a>
+                </div>
+              )}
             </Link>
           ))}
         </div>
