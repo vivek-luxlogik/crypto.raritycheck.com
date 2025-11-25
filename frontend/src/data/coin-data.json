@@ -1,6 +1,28 @@
 {
   "coinSets": [
     {
+      "id": "see-no-evil",
+      "name": "See No Evil - Three Wise Monkeys",
+      "description": "The first release in the Three Wise Monkeys series - A collaboration between RarityCheck and Ballet",
+      "totalCoins": 206,
+      "buyUrl": "",
+      "otherUrl": "/see-no-evil",
+      "frontImage": "https://rcpublicbucket.s3.us-east-1.amazonaws.com/monkey_coin_see_no_evil/coin_background.png",
+      "backImage": "https://rcpublicbucket.s3.us-east-1.amazonaws.com/monkey_coin_see_no_evil/coin_back_on_cloth.png",
+      "coinTypes": [
+        {
+          "type": "copper",
+          "name": "Pure Copper with Mirror Finish",
+          "material": "Pure Copper - 39mm diameter, 2mm thick, 22g",
+          "borderColor": "#B87333",
+          "imagePath": "/btc_logos/256.png",
+          "maxCoins": 200,
+          "frontImage": "https://rcpublicbucket.s3.us-east-1.amazonaws.com/monkey_coin_see_no_evil/coin_on_platform.png",
+          "backImage": "https://rcpublicbucket.s3.us-east-1.amazonaws.com/monkey_coin_see_no_evil/coin_back_on_cloth.png"
+        }
+      ]
+    },
+    {
       "id": "2021-set-1",
       "name": "Vigilante 2021 Set",
       "description": "First collection of Bitcoin physical coins",

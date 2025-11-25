@@ -21,7 +21,7 @@ interface CoinSet {
   name: string;
   description: string;
   totalCoins: number;
-  dataFile: string;
+  dataFile?: string;
   buyUrl?: string;
   otherUrl?: string;
   coinTypes: CoinType[];

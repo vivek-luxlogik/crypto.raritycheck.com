@@ -16,8 +16,11 @@ const Home: React.FC = () => {
       <div className="collections-grid">
         <h2>Available Collections</h2>
         <div className="collections-list">
-          {coinData.coinSets.filter(set => set.id !== 'vibgyor-orange-compromised').map((set) => (
-            <Link key={set.id} to={`/${set.id}`} className="collection-card">
+          {coinData.coinSets.filter(set => set.id !== 'vibgyor-orange-compromised').map((set) => {
+            // Special handling for see-no-evil to link to dedicated page
+            const linkPath = set.id === 'see-no-evil' ? '/see-no-evil' : `/${set.id}`;
+            return (
+            <Link key={set.id} to={linkPath} className="collection-card">
               <div className="collection-header">
                 <img 
                   src={set.coinTypes[0]?.frontImage || '/btc_logos/256.png'} 
@@ -58,7 +61,8 @@ const Home: React.FC = () => {
                 </div>
               )}
             </Link>
-          ))}
+            );
+          })}
         </div>
       </div>
 

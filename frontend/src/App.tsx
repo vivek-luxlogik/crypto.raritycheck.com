@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Link, useParams } from 'react-r
 import './App.css';
 import Home from './components/Home';
 import CoinSet from './components/CoinSet';
+import SeeNoEvil from './components/SeeNoEvil';
 import ThemeSwitcher from './components/ThemeSwitcher';
 import { ThemeProvider } from './contexts/ThemeContext';
 import coinData from './data/coin-data.json';
@@ -49,6 +50,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/address/:btcAddress" element={<AddressRedirect />} />
+              <Route path="/see-no-evil" element={<SeeNoEvil />} />
               {coinData.coinSets.map((set) => (
                 <Route 
                   key={set.id} 
