@@ -16,6 +16,7 @@
           "material": "Pure Copper - 39mm diameter, 2mm thick, 22g",
           "borderColor": "#B87333",
           "imagePath": "/btc_logos/256.png",
+          "dataFile": "see_no_evil_addresses.txt",
           "maxCoins": 200,
           "frontImage": "https://rcpublicbucket.s3.us-east-1.amazonaws.com/monkey_coin_see_no_evil/coin_on_platform.png",
           "backImage": "https://rcpublicbucket.s3.us-east-1.amazonaws.com/monkey_coin_see_no_evil/coin_back_on_cloth.png"

@@ -1,8 +1,163 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { getBalances, BalanceData } from '../utils/blockchain';
+import coinData from '../data/coin-data.json';
 import './SeeNoEvil.css';
 
+interface AddressInfo {
+  serial: string;
+  address: string;
+}
+
 const SeeNoEvil: React.FC = () => {
+  const [addressesExpanded, setAddressesExpanded] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [addresses, setAddresses] = useState<AddressInfo[]>([]);
+  const [balances, setBalances] = useState<Record<string, BalanceData>>({});
+  const [searchFilters, setSearchFilters] = useState({
+    serial: '',
+    address: '',
+    balance: '',
+    status: ''
+  });
+  const [copiedAddress, setCopiedAddress] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (addressesExpanded && addresses.length === 0) {
+      loadAddresses();
+    }
+  }, [addressesExpanded]);
+
+  const loadAddresses = async () => {
+    setLoading(true);
+    try {
+      const response = await fetch('/data/see_no_evil_addresses.txt');
+      if (!response.ok) {
+        throw new Error('Failed to load addresses');
+      }
+      const text = await response.text();
+      const lines = text.trim().split('\n');
+      
+      const loadedAddresses: AddressInfo[] = [];
+      for (const line of lines) {
+        if (line) {
+          const [serial, address] = line.split(',');
+          if (address?.trim()) {
+            loadedAddresses.push({
+              serial: serial?.trim() || '',
+              address: address.trim()
+            });
+          }
+        }
+      }
+
+      setAddresses(loadedAddresses);
+
+      // Get balances
+      const addressList = loadedAddresses.map(a => a.address);
+      const [, balanceData] = await getBalances(addressList);
+      setBalances(balanceData);
+    } catch (error) {
+      console.error('Error loading addresses:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const updateSearchFilter = (field: string, value: string) => {
+    setSearchFilters(prev => ({
+      ...prev,
+      [field]: value
+    }));
+  };
+
+  const clearSearchFilters = () => {
+    setSearchFilters({
+      serial: '',
+      address: '',
+      balance: '',
+      status: ''
+    });
+  };
+
+  const filterAddresses = (addressList: AddressInfo[]) => {
+    return addressList.filter(({ serial, address }) => {
+      const balanceData = balances[address];
+      const balance = balanceData?.final_balance?.toFixed(8) || '0.00000000';
+      const status = balanceData?.status?.label || 'Unknown';
+      
+      const serialMatch = !searchFilters.serial || serial.toLowerCase().includes(searchFilters.serial.toLowerCase());
+      const addressMatch = !searchFilters.address || address.toLowerCase().includes(searchFilters.address.toLowerCase());
+      const balanceMatch = !searchFilters.balance || balance.includes(searchFilters.balance);
+      const statusMatch = !searchFilters.status || status.toLowerCase().includes(searchFilters.status.toLowerCase());
+      
+      return serialMatch && addressMatch && balanceMatch && statusMatch;
+    });
+  };
+
+  const openBlockchainExplorer = (address: string) => {
+    window.open(`https://www.blockchain.com/explorer/addresses/btc/${address}`, '_blank');
+  };
+
+  const copyToClipboard = async (address: string, event: React.MouseEvent) => {
+    // Prevent event from triggering row click or navigation
+    event.stopPropagation();
+    event.preventDefault();
+    
+    // CRITICAL VALIDATION: Ensure we have a valid address string
+    // This guarantees we're copying the exact address from the button's row
+    if (!address || typeof address !== 'string') {
+      console.error('Invalid address provided for copying:', address);
+      return;
+    }
+
+    // Use exact address from parameter - only trim whitespace
+    // This ensures we copy the exact same address displayed in the table
+    const addressToCopy = address.trim();
+    
+    // Additional validation: Bitcoin addresses are typically 26-62 characters
+    // This is just a sanity check, not a hard requirement
+    if (addressToCopy.length < 26 || addressToCopy.length > 62) {
+      console.warn('Address length unusual:', addressToCopy.length, 'characters');
+      // Still allow copy - might be a valid address outside typical range
+    }
+    
+    try {
+      // Modern Clipboard API - supported in all browsers since 2018
+      // Only works in secure contexts (HTTPS or localhost)
+      if (!navigator.clipboard) {
+        throw new Error('Clipboard API not supported in this browser');
+      }
+
+      if (!window.isSecureContext) {
+        throw new Error('Clipboard API requires secure context (HTTPS)');
+      }
+
+      // Write exact address to clipboard
+      // This is guaranteed to be the same address from the table row
+      await navigator.clipboard.writeText(addressToCopy);
+      
+      // Show visual feedback
+      setCopiedAddress(addressToCopy);
+      setTimeout(() => {
+        setCopiedAddress(null);
+      }, 2000);
+    } catch (error) {
+      console.error('Failed to copy address to clipboard:', error);
+      // User-friendly fallback - show address in prompt they can copy from
+      const userConfirmed = confirm(
+        `Automatic copy is not available. The address is:\n\n${addressToCopy}\n\nClick OK to open a dialog where you can copy it manually.`
+      );
+      if (userConfirmed) {
+        // prompt() allows user to select and copy the text
+        prompt('Copy this address (Ctrl+C / Cmd+C):', addressToCopy);
+      }
+    }
+  };
+
+  const filteredAddresses = filterAddresses(addresses);
+  const hasActiveFilters = searchFilters.serial || searchFilters.address || searchFilters.balance || searchFilters.status;
+
   return (
     <div className="see-no-evil">
       <Link to="/" className="back-link">← Back to Collections</Link>
@@ -295,6 +450,166 @@ const SeeNoEvil: React.FC = () => {
       <section className="cta-section">
         <h2>Don't miss this opportunity to own a piece of physical Bitcoin history!</h2>
         <p className="cta-text">Reserve your "See No Evil" coin today! 🙈</p>
+      </section>
+
+      {/* Expandable Address Section */}
+      <section className="content-section address-section">
+        <button
+          className="address-section-toggle"
+          onClick={() => setAddressesExpanded(!addressesExpanded)}
+          aria-expanded={addressesExpanded}
+        >
+          <h2>🔍 VIEW ALL ADDRESSES & TRACK STATUS</h2>
+          <span className="toggle-icon">{addressesExpanded ? '▼' : '▶'}</span>
+        </button>
+
+        {addressesExpanded && (
+          <div className="address-section-content">
+            {loading ? (
+              <div className="loading">
+                <div className="loading-spinner"></div>
+                <p>Loading addresses and balances...</p>
+              </div>
+            ) : (
+              <>
+                <div className="address-info">
+                  <p>Track the blockchain status of all {addresses.length} See No Evil coins (CA016201 - CA016400)</p>
+                  {hasActiveFilters && (
+                    <button className="clear-search-btn" onClick={clearSearchFilters}>
+                      Clear Search Filters
+                    </button>
+                  )}
+                </div>
+
+                <div className="address-table-container">
+                  <table className="addresses-table">
+                    <thead>
+                      <tr>
+                        <th>
+                          <div className="search-header">
+                            <span>Certificate Number</span>
+                            <input
+                              type="text"
+                              placeholder="Search serial..."
+                              value={searchFilters.serial}
+                              onChange={(e) => updateSearchFilter('serial', e.target.value)}
+                              className="search-input"
+                            />
+                          </div>
+                        </th>
+                        <th>
+                          <div className="search-header">
+                            <span>BTC Address</span>
+                            <input
+                              type="text"
+                              placeholder="Search address..."
+                              value={searchFilters.address}
+                              onChange={(e) => updateSearchFilter('address', e.target.value)}
+                              className="search-input"
+                            />
+                          </div>
+                        </th>
+                        <th>
+                          <div className="search-header">
+                            <span>Balance</span>
+                            <input
+                              type="text"
+                              placeholder="Search balance..."
+                              value={searchFilters.balance}
+                              onChange={(e) => updateSearchFilter('balance', e.target.value)}
+                              className="search-input"
+                            />
+                          </div>
+                        </th>
+                        <th>
+                          <div className="search-header">
+                            <span>Status</span>
+                            <input
+                              type="text"
+                              placeholder="Search status..."
+                              value={searchFilters.status}
+                              onChange={(e) => updateSearchFilter('status', e.target.value)}
+                              className="search-input"
+                            />
+                          </div>
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {filteredAddresses.map(({ serial, address }, index) => {
+                        const balanceData = balances[address];
+                        return (
+                          <tr
+                            key={address}
+                            className={index % 2 === 0 ? 'even-row' : 'odd-row'}
+                          >
+                            <td>
+                              <span className="serial-number">{serial}</span>
+                            </td>
+                            <td>
+                              <div className="address-cell">
+                                <button
+                                  className="address-link"
+                                  onClick={() => openBlockchainExplorer(address)}
+                                  title="View on Blockchain Explorer"
+                                >
+                                  {address}
+                                </button>
+                                <button
+                                  className={`copy-button ${copiedAddress === address ? 'copied' : ''}`}
+                                  onClick={(e) => copyToClipboard(address, e)}
+                                  title={copiedAddress === address ? 'Copied!' : 'Copy address'}
+                                  type="button"
+                                >
+                                  {copiedAddress === address ? '✓' : '📋'}
+                                </button>
+                              </div>
+                            </td>
+                            <td>
+                              <span className="balance">
+                                {balanceData?.final_balance?.toFixed(8) || '0.00000000'} BTC
+                              </span>
+                            </td>
+                            <td>
+                              <span
+                                className="status"
+                                style={{ color: balanceData?.status?.color || '#000000' }}
+                              >
+                                {balanceData?.status?.label || 'Unknown'}
+                              </span>
+                            </td>
+                          </tr>
+                        );
+                      })}
+                      {filteredAddresses.length === 0 && (
+                        <tr>
+                          <td colSpan={4} style={{ textAlign: 'center', padding: '2rem' }}>
+                            No addresses found matching your search criteria.
+                          </td>
+                        </tr>
+                      )}
+                    </tbody>
+                  </table>
+                </div>
+
+                <div className="status-legend">
+                  <h3>Status Legend</h3>
+                  <div className="legend-grid">
+                    {Object.entries(coinData.statusTypes).map(([key, status]) => (
+                      <div key={key} className="legend-card">
+                        <div className="legend-indicator" style={{ backgroundColor: status.color }}></div>
+                        <div className="legend-text">
+                          <div className="legend-label">{status.label}</div>
+                          <div className="legend-description">{status.description}</div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </>
+            )}
+          </div>
+        )}
       </section>
     </div>
   );
